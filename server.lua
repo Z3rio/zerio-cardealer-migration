@@ -27,7 +27,6 @@ function SelectSQL(sqlstr, params, cb) -- Selecting SQL strings
     end
 
     if GetResourceState("ghmattimysql") == "started" and GetResourceState("oxmysql") ~= "started" then -- ghmattimysql
-        print("yes")
         exports.ghmattimysql:scalar(sqlstr, params, function(retVal)
             cb(retVal)
         end)
