@@ -1,4 +1,8 @@
 -- FUNCTIONS
+function HandleApostrophes(text)
+    return text:gsub("'", "''") 
+end
+
 function addVehicle(model, name, orderprice, saleprice, category, shop, index,
                     length)
     ExecuteSQL(string.format([[
@@ -15,7 +19,7 @@ function addVehicle(model, name, orderprice, saleprice, category, shop, index,
             %s,
             %s
         )
-    ]], model, name, orderprice, saleprice, "", "", category, shop, 0, 0, 0),
+    ]], model, HandleApostrophes(name), orderprice, saleprice, "", "", HandleApostrophes(category), HandleApostrophes(shop), 0, 0, 0),
                {}, function()
         print("Zerio-Cardealer-Migration | [" .. index .. "/" ..
                   tostring(length) .. "] " .. name ..
